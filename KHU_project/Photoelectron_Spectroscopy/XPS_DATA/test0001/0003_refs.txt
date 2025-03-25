@@ -1,0 +1,8 @@
+[1]  Tanuma, S., Powell, C.J., Penn, D.R.,Surf. Interf. Analysis 21(1994)165
+[2]   A. Jablonski, F. Salvat and C. J. Powell ,NIST Electron Elastic-Scattering Cross-Section Database, Version 3.1, SRD 64 (National Institute of Standards and Technology) (2004)
+[3]  Yeh, J. -J., Lindau, I. ,At. Data Nuc. Data Tables 32(1985)1
+[4]  Trzhaskovskaya, M.B., Nefedov, V.I.  and Yarzhemsky, V.G. ,At. Data Nuc. Data Tables 77(2001)257
+[5]  Williams, G,X-ray Data Booklet, Lawrence Berkeley National Laboratory, Berkeley CA94720 (2001)
+[6]  Default values assumed!, ()
+[7]  Hubbell, J.H., Trehan, P.N., Singh, N., Chand, B., Mehta, D., Garg, M.L., Garg, R.R., Singh, S., Puri, S. ,J. Phys. Chem. Ref. Data 23(1994)339
+[8]  W. A. Coghlan and R. E. Clausing,Atomic Data 5(1973)317

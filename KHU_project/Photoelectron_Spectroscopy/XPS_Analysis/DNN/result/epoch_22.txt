@@ -1,0 +1,7 @@
+XPS Analysis result
+Sn : 29.1 %
+Xe : 46.5 %
+Eu : 6.3 %
+Gd : 6.6 %
+C5O contamination : 5.21 [A]
+

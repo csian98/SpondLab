@@ -1,0 +1,218 @@
+:PROPERTILE:
+#+TITLE: DNN evaluating XPS
+#+AUTHOR: JeongHoon Choi
+#+TIME: 2023-07-04
+#+STARTUP: showall
+:END:
+
+#+CAPTION: KHU-Logo
+#+NAME: fig:KHU
+#+ATTR_HTML: :width 50%
+#+ATTR_ORG: :width 50%
+							 [[./img/title.jpg]]
+
+			Choi JeongHoon
+					Kyunghee University
+
+* About Project
+-  [[https://iopscience.iop.org/article/10.1088/2632-2153/ab5da6][Deep neural network for x-ray photoelectron spectroscopy data analysis]]
+-  [[https://www.nist.gov/srd/nist-standard-reference-database-100][NIST Database for the Simulation of Electron Spectra for Surface Analysis (SESSA)]]
+
+*** DNN 모델을 통한 결과
+
+- first DNN model
+#+CAPTION: first DNN model
+#+NAME: fig:before
+#+ATTR_HTML: :width 50%* About Data Builder (SESSA)
+
+** SESSA
+ 모든 데이터 생성은 SESSA를 통해서 이루어짐
+
+ - SESSA connect & disconnect
+  
+  #+BEGIN_SRC c
+
+	void sessa_connect(FILE** fp){
+    if((*fp=popen(".codes/.SESSA/Sessa-2.2.0-Linux/bin/sessa -c", "w"))==NULL){
+      perror("popen error"); exit(1);
+  	}
+      fprintf(*fp, "\\PROJECT RESET \n"); fflush(*fp);
+      fprintf(*fp, "\\SOURCE SET ALKA \n"); fflush(*fp);
+      fprintf(*fp, "\\SPECTROMETER SET RANGE \"400:1486\" REGION 0 \n");
+      fprintf(*fp, "\\PREFERENCES SET DENSITY_SCALE MASS \n"); fflush(*fp);
+   	  fprintf(*fp, "\\PREFERENCES SET OUTPUT SAMPLE \"false\" \n"); fflush(*fp);
+	}
+
+	void sessa_disconnect(FILE* fp){
+      fprintf(fp, "\\ \n"); fflush(fp);
+      fprintf(fp, "quit  \n"); fflush(fp);
+	    pclose(fp);
+	}
+
+  #+END_SRC
+
+*** SESSA console
+/SESSA.MAC_v2.2/Sessa v2.2.app/Contents/MacOS/Sessa\ v2.2
+-c opttion for console
+
+#+BEGIN_RESULT
+[\] allocating morphology param widgets
+\PROJECT LOAD SESSION "/Users/csian/projects/code/DNNXPS/.SESSA/SESSA.MAC_v2.2/Sessa v2.2.app/Contents/Resources/Sessa_ini.ses"
+Loading session file >/Users/csian/projects/code/DNNXPS/.SESSA/SESSA.MAC_v2.2/Sessa v2.2.app/Contents/Resources/Sessa_ini.ses<
+[\]
+#+END_RESULT
+
+*** SESSA generator process>
+- rand_generator
+  - number of atoms (2-5)
+  - atoms ratio (2-5 atoms sumup 100.)
+  - contamination depth (0.00 - 40.00)
+
+#+BEGIN_SRC c
+
+	void rand_generator(char** eq, float* conta){
+  	int i, j, num, tmp;
+   	num=rand()%4+2;
+
+    int atoms_num[num];
+   	int atoms_ratio[num];
+    char buf[BUFFER_SIZE];
+
+    for(i=0; i<num; i++){
+      atoms_num[i]=rand()%ATOM_NUM;
+      for(j=0; j<i; j++){
+        if(atoms_num[i]==atoms_num[j]){
+          i--;
+          break;
+        }
+      }
+    }
+
+    *conta=(float)(rand()%4001)/100;
+
+    int sum=100;
+    for(i=0; i<num-1; i++){
+      atoms_ratio[i]=(rand()%(sum-(num-i-1)))+1;
+      sum-=atoms_ratio[i];
+    }
+    atoms_ratio[num-1]=sum;
+
+    for(i=1; i<num; i++){
+      tmp=atoms_ratio[i];
+      j=i-1;
+      while(j>=0 && atoms_ratio[j]<tmp){
+        atoms_ratio[j+1]=atoms_ratio[j];
+        j--;
+      }
+      atoms_ratio[j+1]=tmp;
+    }
+
+    strcat(*eq, "/");
+    for(i=0; i<num; i++){
+      strcat(*eq, atoms[atoms_num[i]]);
+      sprintf(buf, "%d", atoms_ratio[i]);
+      strcat(*eq, buf);
+      strcat(*eq, "/");
+    }
+  }
+
+#+END_SRC
+
+- random_shift
+  - sessa-conta-shift (-0.5 - 0.5eV)
+  - sessa-chemi-shift (-10 - 10eV)
+
+#+BEGIN_SRC c
+	void sessa_conta_shift(FILE* fp, int peak_num){
+  	float shift=(float)(rand()%101)/100-0.5;
+    if(shift!=0){
+      fprintf(fp, "\\SAMPLE PEAK SET CHEMSHIFT VALUE %.2f PEAK %d \n", shift, peak_num); fflush(fp);
+    }
+  }
+
+  void sessa_chemi_shift(FILE* fp, int peak_num){
+    float shift=(float)(rand()%2001)/200-10;
+    if(shift!=0){
+      fprintf(fp, "\\SAMPLE PEAK SET CHEMSHIFT VALUE %.2f PEAK %d \n", shift, peak_num); fflush(fp);
+    }
+  }
+
+#+END_SRC
+
+( peak_num을 얻기 위해 "PROJECT SAVE OUTPUT \"%s\" \n" 를 사용해서 임시 peak-info 데이터 생성 )
+
+├── tmp_refs.txt
+├── tmp_rems.txt
+├── tmp_sam_par.txt
+├── tmp_sam_peak.txt
+
+	tmp_sam_peak.txt
+#+BEGIN_SRC
+  -peak info ---------------------------------------------------------------------
+   Number of peaks                       :9
+  #  ele trans     Ekin[eV]     type 
+  --------------------------------------------------------------------------------
+   1 Si  2s        1336.90002   Photoelectron line
+   2 Si  2p1/2     1386.79993   Photoelectron line
+   3 Si  2p3/2     1387.40002   Photoelectron line
+   4  O  1s         943.49994   Photoelectron line
+   5  O  2s        1445.00000   Photoelectron line
+	... continue
+  
+#+END_SRC
+
+\  # : peak-num (if ele[peak-num]==Si || ele[peak-num]==O) -> contamination shift
+							  (else) -> chemical shift
+
+- sessa_data
+  - RANDOM으로 얻은 equation & contamination 두께에 따른 원소 입력
+  - shift_sam 을 통해 peak-shift 이후, 데이터 생성
+
+#+BEGIN_SRC c
+  void sessa_data(FILE* fp, int file_no, char* eq, float conta){
+    char* buf=(char*)calloc(BUFFER_SIZE, sizeof(char));
+    sprintf(buf, "%s/tmp_", peak_path);
+    fprintf(fp, "\\SAMPLE RESET \n"); fflush(fp);
+    fprintf(fp, "\\SAMPLE SET MATERIAL %s LAYER 0 \n", eq); fflush(fp);
+    if(conta!=0){
+      fprintf(fp, "\\SAMPLE ADD LAYER /C5/O/ THICKNESS %.2f ABOVE 0 \n", conta); fflush(fp);
+      fprintf(fp, "\\SAMPLE SET DENSITY 1.56 LAYER 1 \n"); fflush(fp);
+    }
+    fprintf(fp, "\\PROJECT SAVE OUTPUT \"%s\" \n", buf); fflush(fp);
+
+    shift_sam(fp);
+
+    fprintf(fp, "\\MODEL SIMULATE \n"); fflush(fp);
+    fprintf(fp, "\\MODEL SAVE SPECTRA \"%s/%06d_\" \n", path, file_no); fflush(fp);
+    free(buf);
+  }
+#+END_SRC
+
+generator 프로세스를 통해 데이터 생성(10-30sec 소요) 이후, preprocessor 프로세스에 pipe를 통한 equation & contamination depth
+전달 및 signal 전송 (preprocessor에게 처리 완료 signal 받기 전까지 다음 데이터 생성)
+
+*** SESSA preprocessor process>
+- add-info
+  generator pipe로 전달 받은 equation & contamination dept (LABEL) 데이터에 기록장
+- normalizer
+  generator가 생성한 xps 데이터 read & normalize[0-1] 이후 저장
+- clear-directory
+  generator가 생성한 기타 파일(peak data & xps data) 디렉토리 제거
+- generator에게 처리 완료 signal 전
+
+*** Fault
+- generator_master
+  Generator는 SESSA와 fpipe를 통해 명령을 입력, 파일을 통해 출력을 받음: 입력 과정에서 stack overflow등 불안정한 구조
+  -> generator와 sessa 사이 원활한 소통이 진행되지 않을 때가 있었음
+
+  	Generator_master 프로세스를 통해 30sec 이상 generator로 부터 signal을 받지 못한 경우,
+    진행 상태 reset 후, generator가 다시 SESSA와 연결해 진행하도록 유도
+
+*** etc Process
+- vanish-dir
+  모든 생성 xps 데이터를 포함한 데이터 제거 (PASSWORD: 2017103274) 코드에 하드코딩 되어 있음
+- relative-intensity
+  SESSA에게 하나의 원소만 전달한 후, 생성한 xps 데이터의 가장 큰 peek intensity에 대한 relative-intensity 데이터
+  	T.txt 생성
+
+

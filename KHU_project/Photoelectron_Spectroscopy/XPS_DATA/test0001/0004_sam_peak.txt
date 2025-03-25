@@ -1,0 +1,134 @@
+-peak info ---------------------------------------------------------------------
+ Number of peaks                       :6
+#  ele trans     Ekin[eV]     type 
+--------------------------------------------------------------------------------
+ 1  C  1s        1202.39990   Photoelectron line
+ 2  O  1s         943.49994   Photoelectron line
+ 3  O  2s        1445.00000   Photoelectron line
+ 4  O  KL1L1      477.00000   Augerelectron line
+ 5  O  KL1L23     496.50000   Augerelectron line
+ 6  O  KL23L23    516.00000   Augerelectron line
+--------------------------------------------------------------------------------
+ data for peak                         :1
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1202.39990
+ element                               :C
+ atomic number                         : 6
+ subshell                              :1s
+ cross section                    [A^2]: 0.00014   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.73005   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1202.39990 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :2
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:943.49994
+ element                               :O
+ atomic number                         : 8
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.59813   [4]
+ asymmetry parameter delta             :-0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  943.50000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :3
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1445.00000
+ element                               :O
+ atomic number                         : 8
+ subshell                              :2s
+ cross section                    [A^2]: 0.00002   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.68433   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1445.00000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :4
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:477.00000
+ element                               :O
+ atomic number                         : 8
+ transition                            :KL1L1
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00691   [7]
+ empirical sensitivity                 : 0.14286   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  477.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :5
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:496.50000
+ element                               :O
+ atomic number                         : 8
+ transition                            :KL1L23
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00691   [7]
+ empirical sensitivity                 : 0.28571   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  496.50000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :6
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:516.00000
+ element                               :O
+ atomic number                         : 8
+ transition                            :KL23L23
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00691   [7]
+ empirical sensitivity                 : 0.57143   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  516.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------

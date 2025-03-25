@@ -1,0 +1,5 @@
+XPS Analysis result
+Mn : 4.3 %
+Xe : 93.4 %
+C5O contamination : 4.39 [A]
+

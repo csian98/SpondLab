@@ -1,0 +1,7 @@
+InitNum : 0
+TargetNum : 20000000
+SessaReconnect : 50
+XPSsource : ALKA
+ChemRdnSft : 5
+ContaRdnSft : 0.5
+DataSave : false

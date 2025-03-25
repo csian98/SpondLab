@@ -1,0 +1,305 @@
+#!/bin/bash
+# script for execute model
+
+function InitWindow {
+  while [ 1 ]; do
+    while [ 1 ]; do
+      dialog --backtitle $BKTT --title XPSDNN --ok-label "Select"\
+      --menu " - SELECT MENU -" 10 40 3 1 "TRAIN" 2 "PREDICT" 3 "STATUS" 2> $tmp1
+      if [ $? -eq 1 ]; then
+        checkExit
+        if [ $? -eq 1 ]; then
+          break 2
+        fi
+      else
+        break
+      fi
+    done
+    
+    ps -ef | gawk -f ".codes/ps.gawk" > $psFile
+    choice=`cat $tmp1`
+    
+    if [ $choice -eq 1 ]; then
+      trainWindow
+    elif [ $choice -eq 2 ]; then
+      testWindow
+    else
+      statusWindow
+    fi
+  done
+}
+
+function trainWindow {
+  psNum=`cat $psFile | wc -l`
+  if [ $psNum -ne 0 ]; then
+    dialog --backtitle $BKTT --title TRAIN --yesno " Already Running Processes exist,\n Would you like to Terminate it?" 7 40
+    
+    if [ $? -eq 1 ]; then
+      dialog --backtitle $BKTT --title TRAIN --msgbox " Kill All Processes" 5 30
+      clear
+      killAll
+    else
+      return
+    fi
+  fi
+  
+  dialog --backtitle $BKTT --title TRAIN --yesno " Initialize and Check System Status" 5 40
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  clear
+  . .codes/checkStatus.sh
+  
+  dialog --backtitle $BKTT --title TRAIN --yesno " Start training process" 5 40
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  
+  dialog --backtitle $BKTT --title TRAIN --yesno " Change Config" 5 40
+  if [ $? -eq 0 ]; then
+    exec 3>&1
+    config=$(dialog --backtitle $BKTT --title TRAIN --ok-label Submit --mixedform "    CONFIG" 20 40 10\
+      "InitNum:" 1 1 "0" 1 17 10 0 a\
+      "TargetNum:" 2 1 "20000000" 2 17 10 0 a\
+      "SessaReconnect:" 3 1 "50" 3 17 5 0 a\
+      "XPSsource:" 4 1 "ALKA" 4 17 5 0 a\
+      "ChemRdnSft:" 5 1 "5" 5 17 5 0 a\
+      "ContaRdnSft:" 6 1 "0.5" 6 17 5 0 a\
+      "DataSave:" 7 1 "false" 7 17 5 0 a\
+      2>&1 1>&3)
+    
+    exec 3>&-
+    
+    writeConfig $config
+  fi
+  
+  dialog --backtitle $BKTT --title TRAIN --msgbox " Now Start Training Process" 5 35
+  
+  sleep 2
+  nohup .codes/main >/dev/null 2>&1 &
+}
+
+function testWindow {
+  dialog --backtitle $BKTT --title PREDICT --radiolist " Select h5py directory" 10 40 2\
+    "1" "shut/" "off" "2" "pth/" "on" 2>$tmp2
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  
+  choice=`cat $tmp2`
+  h5pyPath=""
+  if [ $choice -eq 1 ]; then
+    h5pyPath="./shut/"
+  else
+    h5pyPath="./pth/"
+  fi
+  
+  h5py="JaneDoe"
+  while [ ! -f $h5py ]; do
+    dialog --backtitle $BKTT --title " Select h5py" --fselect $h5pyPath 10 50 2>$tmp2
+    if [ $? -eq 1 ]; then
+      return
+    fi
+    h5py=`cat $tmp2`
+  done
+  
+  dialog --backtitle $BKTT --title PREDICT --radiolist " Select Test Data directory" 10 40 2\
+   "1" "./" "off" "2" "data/" "on" 2>$tmp2
+  if [ $? -eq 1 ]; then
+    return
+  fi
+   
+  choice=`cat $tmp2`
+  dataPath=""
+  if [ $choice -eq 1 ]; then
+    dataPath="./"
+  else
+    dataPath="./data/"
+  fi
+  
+  testData="JaneDoe"
+  while [ ! -f $testData ]; do
+    dialog --backtitle $BKTT --title " Select Test Data" --fselect $dataPath 10 50 2>$tmp2
+    if [ $? -eq 1 ]; then
+      return
+    fi
+    testData=`cat $tmp2`
+  done
+  
+  .codes/predict.py $h5py $testData
+  while [ ! -e .tmp/dump2/predict.txt ]; do
+    :
+  done
+  
+  dialog --backtitle $BKTT --title PREDICT --textbox .tmp/dump2/predict.txt 15 80
+}
+
+function statusWindow {
+  psNum=`cat $psFile | wc -l`
+  dialog --backtitle $BKTT --title STATUS --msgbox " $psNum Processes Found" 5 30
+  
+  while [ 1 ]; do
+    dialog --backtitle $BKTT --title STATUS --menu " - SELECT CONTROL -" 15 50 5 1 "Check Status of Processes" 2 "Send Signal to achieve status" 3 "Viewing Log files" 4 "Capture Xvfb Img" 5 "Terminate Processes" 6 "Exit (return Home)" 2> $tmp1
+    
+    if [ $? -eq 1 ]; then
+      break
+    fi
+    
+    selection=`cat $tmp1`
+    case $selection in
+    1)
+      cat /dev/null > $tmp2
+      if [ $psNum -ne 0 ]; then
+        cat $psFile | while read pid; do
+          ps -ef | gawk -v id=$pid '{if($2==id) print $1,$2,$4,$8}' >> $tmp2
+        done
+        dialog --backtitle $BKTT --title PROCESS --textbox $tmp2 15 80
+      else
+        dialog --backtitle $BKTT --title STATUS --msgbox "There are no Processes running" 5 30
+      fi;;
+    2)
+      if [ $psNum -eq 0 ]; then
+        dialog --backtitle $BKTT --title STATUS --msgbox "There are no Processes running" 5 30
+        continue
+      fi
+      
+      target=`cat .tmp/dump2/target`
+      
+      while [ 1 ]; do
+        #ps -ef | grep $USER| gawk '/.codes[/]main/{print $2}' > $tmp2
+        ps -ef | gawk '/.codes[/]main/{print $2}' > $tmp2
+        cat $tmp2 | while read pid; do
+          kill -SIGUSR1 $pid
+        done
+        
+        while [ ! -e ".tmp/dump2/cpp" ]; do
+          :
+        done
+        while [ ! -e ".tmp/dump2/py" ]; do
+          :
+        done
+        
+        cpp=`cat .tmp/dump2/cpp`
+        py=`cat .tmp/dump2/py`
+        
+        percent=$[ $cpp * 100 / $target ]
+        
+        echo $percent | dialog --backtitle $BKTT --title PROGRESS --gauge " CPP main is up to $cpp\n  PY main is up to $py\n   Target is $target" 8 40 0
+      
+        rm .tmp/dump2/cpp .tmp/dump2/py
+        
+        read -sn1 -t3 quit
+        
+        if [ ! -z $quit ]; then
+          if [ $quit == 'q' ]; then
+            break
+          fi
+        fi
+      done
+      
+      dialog --backtitle $BKTT --title PROGRESS --msgbox " Status mode exit" 5 30;;
+    3)
+      while [ 1 ]; do
+        dialog --backtitle $BKTT --title LOG --fselect .tmp/log/ 10 50 2> $tmp2
+        
+        if [ $? -eq 1 ]; then
+          break
+        fi
+        
+        logFile=`cat $tmp2`
+        dialog --backtitle $BKTT --title `basename $logFile` --textbox $logFile 15 80
+      done
+      
+      dialog --backtitle $BKTT --title LOG --msgbox " Quit Viewing Log files" 5 30;;
+    4)
+      .codes/screenXvfb.sh
+      dialog --backtitle $BKTT --title Xvfb --msgbox " Captured Image on\n ~/jupyter/Contents/screenshot.png" 7 40;;
+    5)
+      if [ $psNum -eq 0 ]; then
+        dialog --backtitle $BKTT --title STATUS --msgbox " There are no Processes running" 5 40
+        continue
+      fi
+      
+      clear
+      killAll
+      dialog --backtitle $BKTT --title TERMINATE --msgbox " All processes are Terminated" 5 35;;
+    6)
+      break;;
+    esac
+  done
+}
+
+function checkExit {
+  dialog --backtitle $BKTT --title XPSDNN --yes-label EXIT --no-label STAY --yesno " Would you like to Exit Process?" 5 40
+  
+  if [ $? -eq 0 ]; then
+    dialog --backtitle $BKTT --title XPSDNN --msgbox " Exit xpsControl" 5 25
+    return 1
+  fi
+  return 0
+}
+
+function ClearFiles {
+  rm $tmp1
+  rm $tmp2
+  rm $psFile
+  clear
+  exit
+}
+
+#####
+
+function writeConfig {
+  echo -e \
+  "InitNum : $1\nTargetNum : $2\nSessaReconnect : $3\nXPSsource : $4\nChemRdnSft : $5\nContaRdnSft : $6\nDataSave : $7\n" > config
+  echo -n $2 >.tmp/dump2/target
+}
+
+function killAll {
+  password
+  
+  if [ -e $psFile ]; then
+    cat $psFile | while read pid; do
+      kill -9 $pid
+    done
+  else
+    echo -e "\t\tThere are no .tmp/dump2/$psFile"
+  fi
+}
+
+function password {
+  while [ 1 ]; do
+    dialog --backtitle $BKTT --title PASSWORD\
+      --passwordbox "Enter the password: " 10 40 2>$tmp2
+    
+    if [ $? -eq 1 ]; then
+      dialog --backtitle $BKTT --title PASSWORD --msgbox " Canceled,\n Exit xpsControl" 7 25
+      ClearFile
+      exit
+    fi
+      
+    input=`cat $tmp2`
+    if [ $input = $passwd ]; then
+      break
+    fi
+    dialog --title "PASSWORD" --msgbox "Wrong Password" 5 30
+  done
+}
+
+###
+BKTT="SPONDLAB_XPSDNN[Choi.SIAN]"
+XPSpath='./'
+DIALOG="$XPSpath/.codes/dialogrc"
+
+tmp1=`mktemp $XPSpath/.tmp/dump2/scriptXXX`
+tmp2=`mktemp $XPSpath/.tmp/dump2/scriptXXX`
+psFile=`mktemp .tmp/dump2/psXXXXXX`
+
+passwd="2017103274"
+
+ps -ef | gawk -f ".codes/ps.gawk" > $psFile
+#ps -ef | grep $USER | gawk -f ".codes/ps.gawk" > $psFile
+
+InitWindow
+
+ClearFiles

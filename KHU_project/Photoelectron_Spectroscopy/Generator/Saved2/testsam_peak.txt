@@ -1,0 +1,105 @@
+-peak info ---------------------------------------------------------------------
+ Number of peaks                       :5
+#  ele trans     Ekin[eV]     type 
+--------------------------------------------------------------------------------
+ 1 Si  2s        1336.90002   Photoelectron line
+ 2 Si  2p1/2     1386.79993   Photoelectron line
+ 3 Si  2p3/2     1387.40002   Photoelectron line
+ 4  O  1s         943.49994   Photoelectron line
+ 5  O  2s        1445.00000   Photoelectron line
+--------------------------------------------------------------------------------
+ data for peak                         :1
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1336.90002
+ element                               :Si
+ atomic number                         :14
+ subshell                              :2s
+ cross section                    [A^2]: 0.00013   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.39053   [4]
+ asymmetry parameter delta             :-0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1336.90002 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :2
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1386.79993
+ element                               :Si
+ atomic number                         :14
+ subshell                              :2p1/2
+ cross section                    [A^2]: 0.00004   [3]
+ asymmetry parameter beta              : 1.02501   [3]
+ asymmetry parameter gamma             : 0.55581   [4]
+ asymmetry parameter delta             : 0.06126   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1386.79993 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :3
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1387.40002
+ element                               :Si
+ atomic number                         :14
+ subshell                              :2p3/2
+ cross section                    [A^2]: 0.00007   [3]
+ asymmetry parameter beta              : 1.02501   [3]
+ asymmetry parameter gamma             : 0.55779   [4]
+ asymmetry parameter delta             : 0.06135   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1387.40002 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :4
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:943.49994
+ element                               :O
+ atomic number                         : 8
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.59813   [4]
+ asymmetry parameter delta             :-0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  943.50000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :5
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1445.00000
+ element                               :O
+ atomic number                         : 8
+ subshell                              :2s
+ cross section                    [A^2]: 0.00002   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.68433   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1445.00000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+torch
+torchsummary
+torchvision
+matplotlib
+sysv_ipc
+numpy
+h5py
+pandas
+pandas-datareader

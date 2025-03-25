@@ -1,0 +1,7 @@
+1. raw 원본 짤라서 쓰기 
+2. toeplitz0> nxm으로 만들기? -> row 개수 늘이면, after 데이터 간격도 촘촘해짐
+3. REELS data(04_experiment notes)_?!?!?!
+4. 250nm->broad band filter로 바꿔서 해보기 C_60뭐 이런 여러개 데이터 선배님한테 받기
+
+5. random하게 raw_data를 뽑아서 그 축에 맞게 A matrix 만들어서 25% 정도의 데이터로 SVD 해보기(compressed sensing)
+6. A matrix row를 늘이는 대신 ,row vector 행 수를 늘려볼까??

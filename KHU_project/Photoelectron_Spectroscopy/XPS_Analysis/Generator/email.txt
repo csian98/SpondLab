@@ -1,0 +1,28 @@
+------------------------------------------------------------
+
+질문 사항
+- substrate 층과 contamination 층의 intensity를 분리하는 방법
+substrate 층과 contamination 층에 동일한 원소가 포함되어 있는 경우, 어떻게 intensity를 각각 층에 대하여서 분리할 수 있는가?
+subpeak settings 에서 해당 peak을 선택하고, add 픽을 할경우, default로 subpeak relative Height가 각각 1.0으로 설정되어서 동일한 세기로 분리하고 Subpeak Position을 각각 이동시킬 수 있는 것은 확인하였다. 이 때 contamination 층의 두께(Thickness)에 대하여서 각각의 적당한 비율로 분리하고 싶다. Sessa에서 이와 같은 기능을 제공하는가?
+
+ex) substract에 /Si/O2/, contamination에서 /C/O/가 존재할 때, substract의 O peak과 contamination의 O peak의 peak position을 각각 지정하고 싶다.
+
+------------------------------------------------------------
+KHU
+MAIN: Separate substrate layer and contamination layer peaks
+
+NIST. gov
+
+My name is Prof. Yongsup Park at Kyung Hee University in Seoul, Korea.
+I have used your Sessa_v2.2 with building XPS datasets.
+
+While I was using your Sessa, needed to separate peak from substrate layer and contamination layer for each. When substrate layer and contamination layer have same elements, how can I separate each peak with your Sessa.
+I found that there is 'add peak' function at 'Subpeak setting' but, added peaks had default 'Subpeak relative Height' 1.00. Therefore, I could not get each peak Height about different contamination thickness.
+
+I wonder with this 'add peak' function can I separate Intensity from total XPS, if not, i want to now whether sessa had those functions or not.
+Thanks.
+
+Best regard,
+
+Yongsup Park
+Dept. of Physics, Kyung Hee Univ

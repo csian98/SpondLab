@@ -1,0 +1,11 @@
+shellscripts for making XPS_DATA graph
+------------------------------------------------------
+plot_data.sh
+
+./plot_data.sh <./FILE NAME>
+------------------------------------------------------
+plot_data_file.sh
+
+./plot_data_file.sh <MKDIR_NAME> <DATA_FOLDER_PATH>
+
+will save all data in <DATA_FOLDER_PATH> at ./Plot_Data/<MKDIR_NAME>

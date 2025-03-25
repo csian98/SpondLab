@@ -1,0 +1,23 @@
+CSIAN
+
+./generator
+
+generator popen SESSA program and forked and IPC with them(SIGUSR1, SUGUSR2, PIPE_STDIN)
+main processor of project which build 100k random ratio material and random contamination depth
+These datas will be used to training with DNN
+
+------------------------------------------------------------------------------
+
+./vanish_dir
+
+vanish_dir will initialize data_set, .tmp_data/raw_data, .tmp_data/tmp
+originally operate preprocessor, preprocessor clear .tmp_data/tmp
+
+*vanish_dir requires password
+
+------------------------------------------------------------------------------
+
+./quick_data [equation] [contamination_depth]
+
+quick_data make equation + /C5/O/ contamination layer XPS and plot data
+graph included peak information

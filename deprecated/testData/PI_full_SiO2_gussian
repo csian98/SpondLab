@@ -1,0 +1,7 @@
+# title      : 0th order partial intensities
+# Reference  : W.S.M. Werner, W. Smekal and C. J. Powell, Simulation of Electron Spectra for Surface Analysis (Sessa v2.2) National Institute of Standards and Technology, Gaithersburg, MD (2021), 
+# Reliability: 
+# Remarks    : 
+#==========================================================================================================
+#Geometry Si 2s        Si 2p1/2     Si 2p3/2     O 1s         O 2s         O KL1L1      O KL1L23     O KL23L23    
+1         7.44814e-06  1.87634e-06  3.72717e-06  3.25103e-05  2.16161e-06  2.68704e-06  5.41619e-06  1.12560e-05 

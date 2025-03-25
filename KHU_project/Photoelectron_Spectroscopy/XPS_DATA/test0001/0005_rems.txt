@@ -1,0 +1,16 @@
+[1]  
+Values calculated with the TPP-2M formula to estimate the inelastic mean free path.
+[2]  
+ The differential elastic scattering cross sections were obtained from the relativistic partial-wave expansion method applied to electrons scattered by the static Dirac-Hartree-Fock potential.
+[3]  
+ calculation based on program HFS by Herman-Skillman-Kortum-Yeh, REV 1983  that gives the hartree fock slater wave functions  (see atomic structure calculation by Herman and Skillman) and program CRST by Manson-Goldberg-Yeh REV 1983 that gives the cross section and asymmetry parameter.
+[4]  
+NOTE: VALUES FOR PHOTON ENERGIES hn>EB+5keV AS WELL AS  hv<EB+100eV ARE EXTRAPOLATED! 1<=Z<=100  Relativistic treatment of the photoeffect in the quadrupole approximationwith the central DiracFockSlater potential. The hole left by the emitted electron is treated in the frozen orbital approximation.
+[5]   
+ 
+[6]  
+
+[7]  
+Semi-empirical formula for K(Z=11-99),L(Z=26-92), and M(Z=71-92) shell; Assumed to be a reasonable approximation for atomic numbers outside the specified ranges.
+[8]  Individual energies and sensitivities may be off by more than 10%.
+Kinetic energies and sensitivities calculated according to the Z+1-rule as described in the reference. Based on the binding energies that are also given in the reference.

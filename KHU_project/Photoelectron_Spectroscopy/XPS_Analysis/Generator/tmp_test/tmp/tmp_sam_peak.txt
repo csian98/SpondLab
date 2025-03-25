@@ -1,0 +1,438 @@
+-peak info ---------------------------------------------------------------------
+ Number of peaks                       :20
+#  ele trans     Ekin[eV]     type 
+--------------------------------------------------------------------------------
+ 1 Ti  2s         925.69995   Photoelectron line
+ 2 Ti  2p1/2     1026.39990   Photoelectron line
+ 3 Ti  2p3/2     1032.80005   Photoelectron line
+ 4 Ti  3s        1427.90002   Photoelectron line
+ 5 Ti  3p1/2     1454.00000   Photoelectron line
+ 6 Ti  3p3/2     1454.00000   Photoelectron line
+ 7 Ti  L3M23N1    416.00000   Augerelectron line
+ 8 Ti  L3M23M45   416.50000   Augerelectron line
+ 9 Ti  L2M23N1    422.00000   Augerelectron line
+10 Ti  L2M23M45   422.50000   Augerelectron line
+11 Ti  L1M1M23    465.50003   Augerelectron line
+12 Ti  L1M23M23   492.00000   Augerelectron line
+13 Ti  L1M23N1    525.00000   Augerelectron line
+14 Ti  L1M23M45   525.50000   Augerelectron line
+15  O  1s         943.49994   Photoelectron line
+16  O  2s        1445.00000   Photoelectron line
+17  O  KL1L1      477.00000   Augerelectron line
+18  O  KL1L23     496.50000   Augerelectron line
+19  O  KL23L23    516.00000   Augerelectron line
+20  C  1s        1202.39990   Photoelectron line
+--------------------------------------------------------------------------------
+ data for peak                         :1
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:925.69995
+ element                               :Ti
+ atomic number                         :22
+ subshell                              :2s
+ cross section                    [A^2]: 0.00044   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.02789   [4]
+ asymmetry parameter delta             :-0.00001   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  925.69995 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :2
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1026.39990
+ element                               :Ti
+ atomic number                         :22
+ subshell                              :2p1/2
+ cross section                    [A^2]: 0.00036   [3]
+ asymmetry parameter beta              : 1.39607   [3]
+ asymmetry parameter gamma             : 0.44439   [4]
+ asymmetry parameter delta             : 0.03291   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1026.39990 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :3
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1032.80005
+ element                               :Ti
+ atomic number                         :22
+ subshell                              :2p3/2
+ cross section                    [A^2]: 0.00071   [3]
+ asymmetry parameter beta              : 1.39607   [3]
+ asymmetry parameter gamma             : 0.45079   [4]
+ asymmetry parameter delta             : 0.03322   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1032.80005 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :4
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1427.90002
+ element                               :Ti
+ atomic number                         :22
+ subshell                              :3s
+ cross section                    [A^2]: 0.00006   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.11371   [4]
+ asymmetry parameter delta             :-0.00001   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1427.90002 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :5
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1454.00000
+ element                               :Ti
+ atomic number                         :22
+ subshell                              :3p1/2
+ cross section                    [A^2]: 0.00004   [3]
+ asymmetry parameter beta              : 1.34881   [3]
+ asymmetry parameter gamma             : 0.49153   [4]
+ asymmetry parameter delta             : 0.03027   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1454.00000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :6
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1454.00000
+ element                               :Ti
+ atomic number                         :22
+ subshell                              :3p3/2
+ cross section                    [A^2]: 0.00007   [3]
+ asymmetry parameter beta              : 1.34881   [3]
+ asymmetry parameter gamma             : 0.49737   [4]
+ asymmetry parameter delta             : 0.03004   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1454.00000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :7
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:416.00000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L3M23N1
+ subshell                              :2p3/2
+ cross section                    [A^2]: 0.00071   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.10811   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  416.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :8
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:416.50000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L3M23M45
+ subshell                              :2p3/2
+ cross section                    [A^2]: 0.00071   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.10811   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  416.50000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :9
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:422.00000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L2M23N1
+ subshell                              :2p1/2
+ cross section                    [A^2]: 0.00036   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.10811   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  422.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :10
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:422.50000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L2M23M45
+ subshell                              :2p1/2
+ cross section                    [A^2]: 0.00036   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.10811   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  422.50000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :11
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:465.50003
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L1M1M23
+ subshell                              :2s
+ cross section                    [A^2]: 0.00044   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.09524   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  465.50000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :12
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:492.00000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L1M23M23
+ subshell                              :2s
+ cross section                    [A^2]: 0.00044   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.19048   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  492.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :13
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:525.00000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L1M23N1
+ subshell                              :2s
+ cross section                    [A^2]: 0.00044   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.06349   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  525.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :14
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:525.50000
+ element                               :Ti
+ atomic number                         :22
+ transition                            :L1M23M45
+ subshell                              :2s
+ cross section                    [A^2]: 0.00044   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00070   [7]
+ empirical sensitivity                 : 0.06349   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  525.50000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :15
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:943.49994
+ element                               :O
+ atomic number                         : 8
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.59813   [4]
+ asymmetry parameter delta             :-0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  943.50000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :16
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1445.00000
+ element                               :O
+ atomic number                         : 8
+ subshell                              :2s
+ cross section                    [A^2]: 0.00002   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.68433   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1445.00000 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :17
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:477.00000
+ element                               :O
+ atomic number                         : 8
+ transition                            :KL1L1
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00691   [7]
+ empirical sensitivity                 : 0.14286   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  477.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :18
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:496.50000
+ element                               :O
+ atomic number                         : 8
+ transition                            :KL1L23
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00691   [7]
+ empirical sensitivity                 : 0.28571   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  496.50000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :19
+ type                                  :Augerelectron line
+ mean energy [kinetic]             [eV]:516.00000
+ element                               :O
+ atomic number                         : 8
+ transition                            :KL23L23
+ subshell                              :1s
+ cross section                    [A^2]: 0.00040   [3]
+ asymmetry parameter beta              : 0.00000   [3]
+ asymmetry parameter gamma             : 0.00000   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ fluorescence yield                    : 0.00691   [7]
+ empirical sensitivity                 : 0.57143   [8]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  516.00000 [8]  3.00000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------
+ data for peak                         :20
+ type                                  :Photoelectron line
+ mean energy [kinetic]             [eV]:1202.39990
+ element                               :C
+ atomic number                         : 6
+ subshell                              :1s
+ cross section                    [A^2]: 0.00014   [3]
+ asymmetry parameter beta              : 2.00000   [3]
+ asymmetry parameter gamma             : 0.73005   [4]
+ asymmetry parameter delta             : 0.00000   [4]
+ chemical state                        :
+ number of subpeaks                    : 1
+--------------------------------------------------------------------------------
+-subpeak info-------------------------------------------------------------------
+ number of subpeaks                    :1
+#  pos.[eV]        wid.[eV]       rel. int.  type 
+--------------------------------------------------------------------------------
+1  1202.39990 [5]  0.70000 [6]    1.00000    Lorentz
+--------------------------------------------------------------------------------

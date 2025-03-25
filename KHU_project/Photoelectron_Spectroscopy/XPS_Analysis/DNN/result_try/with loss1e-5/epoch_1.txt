@@ -1,0 +1,10 @@
+XPS Analysis result
+Zn : 3.7 %
+Ga : 4.2 %
+Eu : 3.2 %
+Ho : 4.1 %
+Er : 3.0 %
+Os : 3.7 %
+Bi : 3.3 %
+C5O contamination : 20.65 [A]
+

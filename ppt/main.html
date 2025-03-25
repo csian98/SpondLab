@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-07-04 Tue 15:08 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DNN evaluating XPS</title>
+<meta name="author" content="JeongHoon Choi" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">DNN evaluating XPS</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org41d127e">1. About Project</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org8640675">1.0.1. DNN 모델을 통한 결과</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2655851">2. About Data Builder (SESSA)</a>
+<ul>
+<li><a href="#orgb29b68d">2.1. SESSA</a>
+<ul>
+<li><a href="#orgb4c253b">2.1.1. SESSA console</a></li>
+<li><a href="#org11aca63">2.1.2. SESSA generator process&gt;</a></li>
+<li><a href="#orgd38b4d9">2.1.3. SESSA preprocessor process&gt;</a></li>
+<li><a href="#org9bca7f0">2.1.4. Fault</a></li>
+<li><a href="#org5f612ab">2.1.5. etc Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="org997a457" class="figure">
+<p><img src="./img/title.jpg" alt="title.jpg" width="50%" />
+</p>
+<p><span class="figure-number">Figure 1: </span>KHU-Logo</p>
+</div>
+
+<p>
+Choi JeongHoon
+		Kyunghee University
+</p>
+
+<div id="outline-container-org41d127e" class="outline-2">
+<h2 id="org41d127e"><span class="section-number-2">1.</span> About Project</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://iopscience.iop.org/article/10.1088/2632-2153/ab5da6">Deep neural network for x-ray photoelectron spectroscopy data analysis</a></li>
+<li><a href="https://www.nist.gov/srd/nist-standard-reference-database-100">NIST Database for the Simulation of Electron Spectra for Surface Analysis (SESSA)</a></li>
+</ul>
+</div>
+
+<div id="outline-container-org8640675" class="outline-4">
+<h4 id="org8640675"><span class="section-number-4">1.0.1.</span> DNN 모델을 통한 결과</h4>
+<div class="outline-text-4" id="text-1-0-1">
+<ul class="org-ul">
+<li>first DNN model</li>
+</ul>
+
+<div id="orgd80f139" class="figure">
+<p><img src="./img/img1.jpg" alt="img1.jpg" width="50%" />
+</p>
+<p><span class="figure-number">Figure 2: </span>first DNN model</p>
+</div>
+
+<ul class="org-ul">
+<li>second Imporved DNN model 1</li>
+</ul>
+
+<div id="orgfa731c0" class="figure">
+<p><img src="./img/img2.jpg" alt="img2.jpg" width="50%" />
+</p>
+<p><span class="figure-number">Figure 3: </span>second Improved DNN model</p>
+</div>
+
+<ul class="org-ul">
+<li>second Improved DNN model 2</li>
+</ul>
+
+<div id="org8054d21" class="figure">
+<p><img src="./img/img3.jpg" alt="img3.jpg" width="50%" />
+</p>
+<p><span class="figure-number">Figure 4: </span>second Improved DNN model</p>
+</div>
+</div>
+
+<ol class="org-ol">
+<li><a id="org6f45fad"></a>전체적인 원소의 종류와 구성비의 정확도가 향상되었으나, 여전히 Li || Be 이 포함된 경우 정확도가 많이 떨어짐<br /></li>
+
+<li><a id="orgfb77e66"></a>조금더 정밀한 결과를 만들 수 있는 모델을 고안하고 싶음<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org2655851" class="outline-2">
+<h2 id="org2655851"><span class="section-number-2">2.</span> About Data Builder (SESSA)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgb29b68d" class="outline-3">
+<h3 id="orgb29b68d"><span class="section-number-3">2.1.</span> SESSA</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+모든 데이터 생성은 SESSA를 통해서 이루어짐
+</p>
+
+<ul class="org-ul">
+<li><p>
+SESSA connect &amp; disconnect
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">
+void sessa_connect(FILE** fp){
+	if((*fp=popen(".codes/.SESSA/Sessa-2.2.0-Linux/bin/sessa -c", "w"))==NULL){
+		perror("popen error"); exit(1);
+	}
+		fprintf(*fp, "\\PROJECT RESET \n"); fflush(*fp);
+		fprintf(*fp, "\\SOURCE SET ALKA \n"); fflush(*fp);
+		fprintf(*fp, "\\SPECTROMETER SET RANGE \"400:1486\" REGION 0 \n");
+		fprintf(*fp, "\\PREFERENCES SET DENSITY_SCALE MASS \n"); fflush(*fp);
+		fprintf(*fp, "\\PREFERENCES SET OUTPUT SAMPLE \"false\" \n"); fflush(*fp);
+}
+
+void sessa_disconnect(FILE* fp){
+		fprintf(fp, "\\ \n"); fflush(fp);
+		fprintf(fp, "quit  \n"); fflush(fp);
+		pclose(fp);
+}
+
+</pre>
+</div></li>
+</ul>
+</div>
+
+<div id="outline-container-orgb4c253b" class="outline-4">
+<h4 id="orgb4c253b"><span class="section-number-4">2.1.1.</span> SESSA console</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+/SESSA.MAC<sub>v2.2</sub>/Sessa v2.2.app/Contents/MacOS/Sessa\ v2.2
+-c opttion for console
+</p>
+
+<div class="RESULT" id="org11f8323">
+<p>
+[\] allocating morphology param widgets
+\PROJECT LOAD SESSION "<i>Users/csian/projects/code/DNNXPS</i>.SESSA/SESSA.MAC<sub>v2.2</sub>/Sessa v2.2.app/Contents/Resources/Sessa<sub>ini.ses</sub>"
+Loading session file &gt;/Users/csian/projects/code/DNNXPS/.SESSA/SESSA.MAC<sub>v2.2</sub>/Sessa v2.2.app/Contents/Resources/Sessa<sub>ini.ses</sub>&lt;
+[\]
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org11aca63" class="outline-4">
+<h4 id="org11aca63"><span class="section-number-4">2.1.2.</span> SESSA generator process&gt;</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>rand<sub>generator</sub>
+<ul class="org-ul">
+<li>number of atoms (2-5)</li>
+<li>atoms ratio (2-5 atoms sumup 100.)</li>
+<li>contamination depth (0.00 - 40.00)</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-c">
+void rand_generator(char** eq, float* conta){
+	int i, j, num, tmp;
+	num=rand()%4+2;
+
+	int atoms_num[num];
+	int atoms_ratio[num];
+	char buf[BUFFER_SIZE];
+
+	for(i=0; i&lt;num; i++){
+		atoms_num[i]=rand()%ATOM_NUM;
+		for(j=0; j&lt;i; j++){
+			if(atoms_num[i]==atoms_num[j]){
+				i--;
+				break;
+			}
+		}
+	}
+
+	*conta=(float)(rand()%4001)/100;
+
+	int sum=100;
+	for(i=0; i&lt;num-1; i++){
+		atoms_ratio[i]=(rand()%(sum-(num-i-1)))+1;
+		sum-=atoms_ratio[i];
+	}
+	atoms_ratio[num-1]=sum;
+
+	for(i=1; i&lt;num; i++){
+		tmp=atoms_ratio[i];
+		j=i-1;
+		while(j&gt;=0 &amp;&amp; atoms_ratio[j]&lt;tmp){
+			atoms_ratio[j+1]=atoms_ratio[j];
+			j--;
+		}
+		atoms_ratio[j+1]=tmp;
+	}
+
+	strcat(*eq, "/");
+	for(i=0; i&lt;num; i++){
+		strcat(*eq, atoms[atoms_num[i]]);
+		sprintf(buf, "%d", atoms_ratio[i]);
+		strcat(*eq, buf);
+		strcat(*eq, "/");
+	}
+}
+
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>random<sub>shift</sub>
+<ul class="org-ul">
+<li>sessa-conta-shift (-0.5 - 0.5eV)</li>
+<li>sessa-chemi-shift (-10 - 10eV)</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-c">void sessa_conta_shift(FILE* fp, int peak_num){
+	float shift=(float)(rand()%101)/100-0.5;
+	if(shift!=0){
+		fprintf(fp, "\\SAMPLE PEAK SET CHEMSHIFT VALUE %.2f PEAK %d \n", shift, peak_num); fflush(fp);
+	}
+}
+
+void sessa_chemi_shift(FILE* fp, int peak_num){
+	float shift=(float)(rand()%2001)/200-10;
+	if(shift!=0){
+		fprintf(fp, "\\SAMPLE PEAK SET CHEMSHIFT VALUE %.2f PEAK %d \n", shift, peak_num); fflush(fp);
+	}
+}
+
+</pre>
+</div>
+
+<p>
+( peak<sub>num을</sub> 얻기 위해 "PROJECT SAVE OUTPUT \"%s\" \n" 를 사용해서 임시 peak-info 데이터 생성 )
+</p>
+
+<p>
+├── tmp<sub>refs.txt</sub>
+├── tmp<sub>rems.txt</sub>
+├── tmp<sub>sam</sub><sub>par.txt</sub>
+├── tmp<sub>sam</sub><sub>peak.txt</sub>
+</p>
+
+<p>
+tmp<sub>sam</sub><sub>peak.txt</sub>
+</p>
+<pre class="example">
+-peak info ---------------------------------------------------------------------
+ Number of peaks                       :9
+#  ele trans     Ekin[eV]     type 
+--------------------------------------------------------------------------------
+ 1 Si  2s        1336.90002   Photoelectron line
+ 2 Si  2p1/2     1386.79993   Photoelectron line
+ 3 Si  2p3/2     1387.40002   Photoelectron line
+ 4  O  1s         943.49994   Photoelectron line
+ 5  O  2s        1445.00000   Photoelectron line
+... continue
+
+</pre>
+
+<p>
+\  # : peak-num (if ele[peak-num]==Si || ele[peak-num]==O) -&gt; contamination shift
+							  (else) -&gt; chemical shift
+</p>
+
+<ul class="org-ul">
+<li>sessa<sub>data</sub>
+<ul class="org-ul">
+<li>RANDOM으로 얻은 equation &amp; contamination 두께에 따른 원소 입력</li>
+<li>shift<sub>sam</sub> 을 통해 peak-shift 이후, 데이터 생성</li>
+</ul></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-c">void sessa_data(FILE* fp, int file_no, char* eq, float conta){
+	char* buf=(char*)calloc(BUFFER_SIZE, sizeof(char));
+	sprintf(buf, "%s/tmp_", peak_path);
+	fprintf(fp, "\\SAMPLE RESET \n"); fflush(fp);
+	fprintf(fp, "\\SAMPLE SET MATERIAL %s LAYER 0 \n", eq); fflush(fp);
+	if(conta!=0){
+		fprintf(fp, "\\SAMPLE ADD LAYER /C5/O/ THICKNESS %.2f ABOVE 0 \n", conta); fflush(fp);
+		fprintf(fp, "\\SAMPLE SET DENSITY 1.56 LAYER 1 \n"); fflush(fp);
+	}
+	fprintf(fp, "\\PROJECT SAVE OUTPUT \"%s\" \n", buf); fflush(fp);
+
+	shift_sam(fp);
+
+	fprintf(fp, "\\MODEL SIMULATE \n"); fflush(fp);
+	fprintf(fp, "\\MODEL SAVE SPECTRA \"%s/%06d_\" \n", path, file_no); fflush(fp);
+	free(buf);
+}
+</pre>
+</div>
+
+<p>
+generator 프로세스를 통해 데이터 생성(10-30sec 소요) 이후, preprocessor 프로세스에 pipe를 통한 equation &amp; contamination depth
+전달 및 signal 전송 (preprocessor에게 처리 완료 signal 받기 전까지 다음 데이터 생성)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd38b4d9" class="outline-4">
+<h4 id="orgd38b4d9"><span class="section-number-4">2.1.3.</span> SESSA preprocessor process&gt;</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<ul class="org-ul">
+<li>add-info
+generator pipe로 전달 받은 equation &amp; contamination dept (LABEL) 데이터에 기록장</li>
+<li>normalizer
+generator가 생성한 xps 데이터 read &amp; normalize[0-1] 이후 저장</li>
+<li>clear-directory
+generator가 생성한 기타 파일(peak data &amp; xps data) 디렉토리 제거</li>
+<li>generator에게 처리 완료 signal 전</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9bca7f0" class="outline-4">
+<h4 id="org9bca7f0"><span class="section-number-4">2.1.4.</span> Fault</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<ul class="org-ul">
+<li><p>
+generator<sub>master</sub>
+Generator는 SESSA와 fpipe를 통해 명령을 입력, 파일을 통해 출력을 받음: 입력 과정에서 stack overflow등 불안정한 구조
+-&gt; generator와 sessa 사이 원활한 소통이 진행되지 않을 때가 있었음
+</p>
+
+<p>
+Generator<sub>master</sub> 프로세스를 통해 30sec 이상 generator로 부터 signal을 받지 못한 경우,
+진행 상태 reset 후, generator가 다시 SESSA와 연결해 진행하도록 유도
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5f612ab" class="outline-4">
+<h4 id="org5f612ab"><span class="section-number-4">2.1.5.</span> etc Process</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<ul class="org-ul">
+<li>vanish-dir
+모든 생성 xps 데이터를 포함한 데이터 제거 (PASSWORD: 2017103274) 코드에 하드코딩 되어 있음</li>
+<li>relative-intensity
+SESSA에게 하나의 원소만 전달한 후, 생성한 xps 데이터의 가장 큰 peek intensity에 대한 relative-intensity 데이터
+	T.txt 생성</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: JeongHoon Choi</p>
+<p class="date">Created: 2023-07-04 Tue 15:08</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
